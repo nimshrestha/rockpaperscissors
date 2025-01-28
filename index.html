@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js-prac</title>
+</head>
+<body>
+    <script>
+    
+        
+        let humanScore = 0;
+        let compScore = 0;
+        let totalNumOfRounds = 5;
+        let compChoice, humanChoice;
+        
+
+        for (let i = 0; i < totalNumOfRounds; i++ ) {
+            playGame();
+            if(humanChoice == undefined){
+                break;
+            }
+            
+        }
+        
+        if (humanChoice == undefined){
+
+            alert(`Game Over. Thanks for playing.`);
+        }
+        else {
+            alert(getGameWinner(humanScore, compScore));
+        }
+        
+        
+        function playGame() {
+            compChoice = getCompChoice();
+            console.log(`CompChoice: ${compChoice}`);
+            humanChoice = getHumanChoice();
+            console.log(`HumanChoice: ${humanChoice}`);
+            playRound(humanChoice, compChoice);
+            console.log(`Player:${humanScore} Computer: ${compScore}`);
+            
+        }
+
+
+        function getCompChoice() {
+            let randomNum = Math.random() *100;
+            // console.log(randomNum);
+            if (randomNum >= 0 && randomNum < 33) {
+                return "rock";
+            }
+            else if (randomNum >= 33 && randomNum < 66) {
+                return "paper";
+            }
+            else {
+                return "scissors";
+            }
+        }
+        
+        function getHumanChoice() {
+            humanInput = prompt(`Enter your choice`);
+            // console.log(humanInput);
+            if (humanInput == ""){
+                alert(`No choice made.`);
+                return getHumanChoice();
+            }
+            else if (humanInput == null) {
+                let quitGame = confirm(`Quit Game?`);
+                // console.log(quitGame);
+                if (quitGame){
+                    return;
+                }
+                else {
+                    return getHumanChoice();
+                }
+            }
+            else if (humanInput.toLowerCase() === 'rock'|| humanInput.toLowerCase() === 'paper' || humanInput.toLowerCase() === 'scissors'){
+                
+                return humanInput;
+            }
+            else {
+                alert(`Invalid choice made.Try again`);
+                return getHumanChoice();
+                // console.log(getHumanChoice());
+            }
+        }
+
+        function playRound (humanChoice, compChoice) {
+
+            if (humanChoice == undefined) {
+                return;
+            }
+
+            // draw conditions
+            else if (humanInput.toLowerCase() === 'rock' && compChoice == "rock" || humanInput.toLowerCase() === 'paper' && compChoice == "paper" 
+            || humanInput.toLowerCase() === 'scissors' && compChoice == "scissors"){
+                humanScore += 0;
+                compScore += 0;
+                alert (`Your Choice: ${humanChoice} \n Computer's Choice: ${compChoice} \n It's a draw.`);
+
+            }   
+
+            //playerWins conditions
+            else if (humanInput.toLowerCase() === 'rock' && compChoice == "scissors" || humanInput.toLowerCase() === 'paper' && compChoice == "rock" 
+            || humanInput.toLowerCase() === 'scissors' && compChoice == "paper") {
+                humanScore += 1;
+                compScore += 0;
+                alert (`Your Choice: ${humanChoice} \n Computer's Choice: ${compChoice} \n You Win! ${humanChoice} beats ${compChoice}.`);
+            }
+
+            // playerLoses conditions
+            else {
+                humanScore += 0;
+                compScore += 1;
+                alert (`Your Choice: ${humanChoice} \n Computer's Choice: ${compChoice} \n You Lose! ${compChoice} beats ${humanChoice}.`)
+            }
+        }
+
+        function getGameWinner (humanScore,compScore) {
+            if (humanScore > compScore) {
+                return (`Final Score: \n Player: ${humanScore} \n Computer: ${compScore} \n You won the game!!`);
+            }
+            else if (humanScore == compScore) {
+                return (`Final Score: \n Player: ${humanScore} \n Computer: ${compScore} \n It's a draw!!`);
+            }
+
+            else {
+                return (`Final Score: \n Player: ${humanScore} \n Computer: ${compScore} \n You lost the game!!`);
+            }
+        }
+        
+
+
+
+
+        
+    </script>
+
+</body>
+</html>
