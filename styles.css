@@ -1,0 +1,31 @@
+body {
+    margin-top: 250px;
+    /* border: 1px solid blue; */
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+
+.playerChoiceContainer {
+    
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* border: 1px solid black; */
+    
+    
+    
+    
+
+}
+
+.playerChoiceContainer > button {
+    /* display: block; */
+    /* border: 1px solid rgb(0, 0, 0); */
+    height: 250px;
+    width: 250px;
+    
+}
