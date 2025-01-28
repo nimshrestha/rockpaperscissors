@@ -13,34 +13,6 @@
         let compScore = 0;
         let totalNumOfRounds = 5;
         let compChoice, humanChoice;
-        
-
-        for (let i = 0; i < totalNumOfRounds; i++ ) {
-            playGame();
-            if(humanChoice == undefined){
-                break;
-            }
-            
-        }
-        
-        if (humanChoice == undefined){
-
-            alert(`Game Over. Thanks for playing.`);
-        }
-        else {
-            alert(getGameWinner(humanScore, compScore));
-        }
-        
-        
-        function playGame() {
-            compChoice = getCompChoice();
-            console.log(`CompChoice: ${compChoice}`);
-            humanChoice = getHumanChoice();
-            console.log(`HumanChoice: ${humanChoice}`);
-            playRound(humanChoice, compChoice);
-            console.log(`Player:${humanScore} Computer: ${compScore}`);
-            
-        }
 
 
         function getCompChoice() {
