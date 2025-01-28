@@ -1,13 +1,3 @@
-body {
-    margin-top: 250px;
-    /* border: 1px solid blue; */
-    height: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-}
-
-
 .playerChoiceContainer {
     
     box-sizing: border-box;
@@ -15,11 +5,6 @@ body {
     justify-content: center;
     gap: 10px;
     /* border: 1px solid black; */
-    
-    
-    
-    
-
 }
 
 .playerChoiceContainer > button {
@@ -28,4 +13,50 @@ body {
     height: 250px;
     width: 250px;
     
+}
+
+.roundContainer {
+    /* border: 4px solid yellow; */
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: center; */
+    
+}
+
+.roundContainer .pointsContainer {
+    /* margin-top: 100px;  */
+    display: flex;
+    justify-content: space-evenly;
+    /* gap: 150px; */
+    /* border: 1px solid purple; */
+    height: 150px;
+}
+
+.pointsContainer > div {
+    width: 250px;
+    border: 2px solid black;
+    text-align: center;
+    font-size: 5rem;
+    /* padding-top: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.label {
+    font-size: 2rem;
+    /* border: 1px solid black; */
+}
+
+
+.roundContainer .roundResult {
+    /* width: 500px; */
+    height: 150px;
+    /* border: 1px solid green; */
+    text-align: center;
+    font-size: 6rem;
+    padding-top: 40px;
 }
