@@ -26,6 +26,7 @@
         <button class="choiceBtn" id="scissors">Scissors</button>
 
     </div>
+    <div class="resetContainer"><button id="reset">Restart Game</button></div>
     <script>
     
         
@@ -33,7 +34,7 @@
         let compScore = 0;
         let roundResult = '';
         let totalNumOfRounds = 5;
-        let roundCounter = 1;
+        let roundCounter = 0;
 
 
         function getCompChoice() {
@@ -76,41 +77,59 @@
             }
         }
 
+        function getGameWinner (humanScore,compScore) {
+            
+            if (humanScore > compScore) {
+                return `${roundResult}<br><br><b>You won the Game!!</b>`;
+            }
+            else if (humanScore == compScore) {
+                return `${roundResult}<br><br><b>The Game is a draw!!</b>`;
+            }
+
+            else {
+                return `${roundResult}<br><br><b>You lost the Game!!</b>`;
+            }
+        }
+        
         let playerChoiceContainer = document.querySelector('.playerChoiceContainer');
+        let playerPoints = document.querySelector('.playerPoints');
+        let compPoints = document.querySelector('.compPoints');
+        let result = document.querySelector('.result');
         playerChoiceContainer.addEventListener('click', (event) => {
             let target = event.target; 
             console.log(target.className);
-            if (target.className === 'choiceBtn' && roundCounter <= totalNumOfRounds){
+            if (target.className === 'choiceBtn' && roundCounter < totalNumOfRounds){
 
                 let humanChoice = target.id;
                 let compChoice = getCompChoice();
                 playRound(humanChoice,compChoice);
-                let playerPoints = document.querySelector('.playerPoints');
-                let compPoints = document.querySelector('.compPoints');
-                let result = document.querySelector('.result');
                 playerPoints.textContent = humanScore;
                 compPoints.textContent = compScore;
                 result.innerHTML = roundResult;
                 roundCounter += 1;
 
+                if (roundCounter == totalNumOfRounds) {
+                    let gameResult = getGameWinner(humanScore,compScore);
+                    result.innerHTML = gameResult;
+                }
             }
+                
 
         });
         
 
-        
-        function getGameWinner (humanScore,compScore) {
-            if (humanScore > compScore) {
-                return (`Final Score: \n Player: ${humanScore} \n Computer: ${compScore} \n You won the game!!`);
-            }
-            else if (humanScore == compScore) {
-                return (`Final Score: \n Player: ${humanScore} \n Computer: ${compScore} \n It's a draw!!`);
-            }
-
-            else {
-                return (`Final Score: \n Player: ${humanScore} \n Computer: ${compScore} \n You lost the game!!`);
-            }
-        }
+        const reset = document.querySelector('#reset');
+        reset.addEventListener('click', () =>{
+            // console.log('reset');
+            humanScore = 0;
+            compScore = 0;
+            roundResult = '';
+            totalNumOfRounds = 5;
+            roundCounter = 0;
+            playerPoints.textContent = 0;
+            compPoints.textContent = 0;
+            result.innerHTML = '';
+        });
         
 
 
