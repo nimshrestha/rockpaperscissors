@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     gap: 10px;
-    /* border: 1px solid black; */
+    border: 1px solid black;
 }
 
 .playerChoiceContainer > button {
@@ -12,6 +12,7 @@
     /* border: 1px solid rgb(0, 0, 0); */
     height: 250px;
     width: 250px;
+    font-size: 2rem;
     
 }
 
@@ -30,7 +31,7 @@
     display: flex;
     justify-content: space-evenly;
     /* gap: 150px; */
-    /* border: 1px solid purple; */
+    border: 1px solid purple;
     height: 150px;
 }
 
@@ -52,11 +53,12 @@
 }
 
 
-.roundContainer .roundResult {
-    /* width: 500px; */
-    height: 150px;
-    /* border: 1px solid green; */
+.roundContainer .result {
+    width: 500px;
+    height: 250px;
+    border: 1px solid green;
     text-align: center;
-    font-size: 6rem;
+    font-size: 2rem;
     padding-top: 40px;
+    align-self: center;
 }

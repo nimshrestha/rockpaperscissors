@@ -10,20 +10,20 @@
     <div class="roundContainer">
         <div class="pointsContainer">
             <div class="player">
-                <div class="playerPoints"></div>
+                <div class="playerPoints">0</div>
                 <div class="label">Player</div>
             </div>
             <div class="computer">
-                <div class="compPoints"></div>
+                <div class="compPoints">0</div>
                 <div class="label">Computer</div>
             </div>
         </div>
-        <div class="roundResult"></div>
+        <div class="result"></div>
     </div>
     <div class="playerChoiceContainer">
-        <button id="rock"><h1>Rock</h1></button>
-        <button id="paper"><h1>Paper</h1></button>
-        <button id="scissors"><h1>Scissors</h1></button>
+        <button class="choiceBtn" id="rock">Rock</button>
+        <button class="choiceBtn" id="paper">Paper</button>
+        <button class="choiceBtn" id="scissors">Scissors</button>
 
     </div>
     <script>
@@ -31,8 +31,9 @@
         
         let humanScore = 0;
         let compScore = 0;
+        let roundResult = '';
         let totalNumOfRounds = 5;
-        let compChoice, humanChoice;
+        let roundCounter = 1;
 
 
         function getCompChoice() {
@@ -48,66 +49,56 @@
                 return "scissors";
             }
         }
-        
-        function getHumanChoice() {
-            humanInput = prompt(`Enter your choice`);
-            // console.log(humanInput);
-            if (humanInput == ""){
-                alert(`No choice made.`);
-                return getHumanChoice();
-            }
-            else if (humanInput == null) {
-                let quitGame = confirm(`Quit Game?`);
-                // console.log(quitGame);
-                if (quitGame){
-                    return;
-                }
-                else {
-                    return getHumanChoice();
-                }
-            }
-            else if (humanInput.toLowerCase() === 'rock'|| humanInput.toLowerCase() === 'paper' || humanInput.toLowerCase() === 'scissors'){
-                
-                return humanInput;
-            }
-            else {
-                alert(`Invalid choice made.Try again`);
-                return getHumanChoice();
-                // console.log(getHumanChoice());
-            }
-        }
 
         function playRound (humanChoice, compChoice) {
 
-            if (humanChoice == undefined) {
-                return;
-            }
-
             // draw conditions
-            else if (humanInput.toLowerCase() === 'rock' && compChoice == "rock" || humanInput.toLowerCase() === 'paper' && compChoice == "paper" 
-            || humanInput.toLowerCase() === 'scissors' && compChoice == "scissors"){
+            if (humanChoice === compChoice){
                 humanScore += 0;
                 compScore += 0;
-                alert (`Your Choice: ${humanChoice} \n Computer's Choice: ${compChoice} \n It's a draw.`);
+                roundResult = `Your Choice: ${humanChoice}<br>Computer's Choice: ${compChoice}<br>It's a draw.`;
 
             }   
 
             //playerWins conditions
-            else if (humanInput.toLowerCase() === 'rock' && compChoice == "scissors" || humanInput.toLowerCase() === 'paper' && compChoice == "rock" 
-            || humanInput.toLowerCase() === 'scissors' && compChoice == "paper") {
+            else if (humanChoice === 'rock' && compChoice === "scissors" || humanChoice === 'paper' && compChoice === "rock" 
+            || humanChoice === 'scissors' && compChoice === "paper") {
                 humanScore += 1;
                 compScore += 0;
-                alert (`Your Choice: ${humanChoice} \n Computer's Choice: ${compChoice} \n You Win! ${humanChoice} beats ${compChoice}.`);
+                roundResult =  `Your Choice: ${humanChoice}<br>Computer's Choice: ${compChoice}<br>You Win! ${humanChoice} beats ${compChoice}.`;
             }
 
             // playerLoses conditions
             else {
                 humanScore += 0;
                 compScore += 1;
-                alert (`Your Choice: ${humanChoice} \n Computer's Choice: ${compChoice} \n You Lose! ${compChoice} beats ${humanChoice}.`)
+                roundResult = `Your Choice: ${humanChoice}<br>Computer's Choice: ${compChoice}<br>You Lose! ${compChoice} beats ${humanChoice}.`;
             }
         }
 
+        let playerChoiceContainer = document.querySelector('.playerChoiceContainer');
+        playerChoiceContainer.addEventListener('click', (event) => {
+            let target = event.target; 
+            console.log(target.className);
+            if (target.className === 'choiceBtn' && roundCounter <= totalNumOfRounds){
+
+                let humanChoice = target.id;
+                let compChoice = getCompChoice();
+                playRound(humanChoice,compChoice);
+                let playerPoints = document.querySelector('.playerPoints');
+                let compPoints = document.querySelector('.compPoints');
+                let result = document.querySelector('.result');
+                playerPoints.textContent = humanScore;
+                compPoints.textContent = compScore;
+                result.innerHTML = roundResult;
+                roundCounter += 1;
+
+            }
+
+        });
+        
+
+        
         function getGameWinner (humanScore,compScore) {
             if (humanScore > compScore) {
                 return (`Final Score: \n Player: ${humanScore} \n Computer: ${compScore} \n You won the game!!`);
