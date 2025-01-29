@@ -28,14 +28,6 @@
     </div>
     <div class="resetContainer"><button id="reset">Restart Game</button></div>
     <script>
-    
-        
-        let humanScore = 0;
-        let compScore = 0;
-        let roundResult = '';
-        let totalNumOfRounds = 5;
-        let roundCounter = 0;
-
 
         function getCompChoice() {
             let randomNum = Math.random() *100;
@@ -90,6 +82,13 @@
                 return `${roundResult}<br><br><b>You lost the Game!!</b>`;
             }
         }
+
+        let humanScore = 0;
+        let compScore = 0;
+        let roundResult = '';
+        let totalNumOfRounds = 5;
+        let roundCounter = 0;
+
         
         let playerChoiceContainer = document.querySelector('.playerChoiceContainer');
         let playerPoints = document.querySelector('.playerPoints');
